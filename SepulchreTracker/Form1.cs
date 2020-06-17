@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -15,6 +16,7 @@ namespace SepulchreTracker {
         String rotationString = "";
         int currentFloor = 1;
         bool onReset = false;
+
 
         readonly int numberOfFloorsWithMultiplePaths = 4;
         readonly String ENTRANCE_DIRECTION_WEST = "w";
@@ -250,5 +252,39 @@ namespace SepulchreTracker {
             eastEntranceS.Enabled = false;
             eastEntranceW.Enabled = false;
         }
-    }
+
+		private void openLogLocationToolStripMenuItem_Click(object sender, EventArgs e) {
+            try {
+                Process.Start(@System.IO.Directory.GetCurrentDirectory() + "/sepulchreRotations.txt");
+            }
+            catch (Exception) {
+                MessageBox.Show("Error:\n\n" + System.IO.Directory.GetCurrentDirectory() + "/sepulchreRotations.txt" + " does not exist.\n\n" +
+                    "Please either create the file at the above location, or complete a run and the program will automatically create the file for you.",
+                    "Error");
+            }
+		}
+
+		private void howToUseToolStripMenuItem_Click(object sender, EventArgs e) {
+            MessageBox.Show(
+                "When doing the Hallowed Sepulchre, when you spawn on a new floor, click the button correlated to the PATH you will be taking.\n\n" +
+                "When you are done with your run, aka you are on floor 5, click the Reset button, which will save your progress and allow you to repeat.\n\n" +
+                "Clicking the Reset button without making it to floor 5 will not track your progress.",
+                "How to use"
+            );
+        }
+
+		private void contactToolStripMenuItem_Click(object sender, EventArgs e) {
+            MessageBox.Show(
+                "You can contact me here:\n\n" +
+                "twitter.com/Im_Hess\n" +
+                "calcusource.com/contact",
+                "Contact"
+              
+            );
+        }
+
+		private void alwaysOnTopToolStripMenuItem_Click(object sender, EventArgs e) {
+            this.TopMost = !(this.TopMost);
+		}
+	}
 }
