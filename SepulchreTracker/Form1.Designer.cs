@@ -212,7 +212,7 @@
 			this.Controls.Add(this.westEntranceN);
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "sepulchredRotationCounter";
-			this.Text = "Sepulchre Rotation Counter";
+			this.Text = "Sepulchre RotationCounter by Hess";
 			this.Load += new System.EventHandler(this.sepulchreRotationCounter_Load);
 			this.ResumeLayout(false);
 			this.PerformLayout();

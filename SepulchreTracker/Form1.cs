@@ -68,6 +68,7 @@ namespace SepulchreTracker {
 
         private void buttonClick(object src, EventArgs args) {
 
+
             Button clickedButton = (src as Button);
             String clickedButtonName = clickedButton.Name.ToLower();
             String direction = clickedButton.Name.Substring(clickedButton.Name.Length - 1, 1);
@@ -83,15 +84,16 @@ namespace SepulchreTracker {
             }
             else {
                 Console.WriteLine("Could not add direction since you already finished floor " + (numberOfFloorsWithMultiplePaths) + ".");
-			}
+                Console.WriteLine("Current Rotation String: " + rotationString);
+                Console.WriteLine("Current floor: " + currentFloor);
+                Console.WriteLine("---");
+            }
             
             if (currentFloor >= numberOfFloorsWithMultiplePaths) {
-                currentFloor = numberOfFloorsWithMultiplePaths;
+                /*currentFloor = numberOfFloorsWithMultiplePaths;*/
             }
 
-            if ((currentFloor + 1) < 5) {
-                currentFloor++;
-            }
+            currentFloor++;
             
             enableAppropriateDirectionsForFloor(currentFloor, entranceLobbyDirection);
 
@@ -119,7 +121,10 @@ namespace SepulchreTracker {
         }
 
         private void enableAppropriateDirectionsForFloor(int floor, String lobbyEntranceDirection) {
-            // test 23
+            
+            if (floor >= 5) {
+                disableAllDirectionButtons();
+			}
 
             if (lobbyEntranceDirection.Equals("RESET")) { 
                 westEntranceN.Enabled = true;
@@ -229,6 +234,21 @@ namespace SepulchreTracker {
                     eastEntranceW.Enabled = false;
                 }
             }
+            else if (floor == 5) {
+                
+            }
+        }
+
+        private void disableAllDirectionButtons() {
+            westEntranceN.Enabled = false;
+            westEntranceE.Enabled = false;
+            westEntranceS.Enabled = false;
+            westEntranceW.Enabled = false;
+
+            eastEntranceN.Enabled = false;
+            eastEntranceE.Enabled = false;
+            eastEntranceS.Enabled = false;
+            eastEntranceW.Enabled = false;
         }
     }
 }
